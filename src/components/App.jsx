@@ -1,12 +1,10 @@
-import React, { Component } from 'react';
-import MatchTableContainer from '../containers/MatchTableContainer.jsx';
+import React from 'react';
+import MatchTableContainer from '../containers/MatchTableContainer';
 
-const App = () => {
+export default function App() {
   return (
     <div>
       <MatchTableContainer />
     </div>
   );
-};
-
-export default App;
+}

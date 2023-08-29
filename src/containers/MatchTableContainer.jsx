@@ -1,8 +1,7 @@
 import React from 'react';
-// import { useSelector } from 'react-redux';
-import MatchTable from '../components/MatchTable.jsx';
+import MatchTable from '../components/MatchTable';
 
-const MatchTableContainer = () => {
+function MatchTableContainer() {
   return (
     <div className='matchTableContainer'>
       <div className='outerBox'>
@@ -10,6 +9,6 @@ const MatchTableContainer = () => {
       </div>
     </div>
   );
-};
+}
 
 export default MatchTableContainer;

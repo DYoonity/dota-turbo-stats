@@ -1,10 +1,14 @@
 import React from 'react';
-import { render } from 'react-dom';
+import { createRoot } from 'react-dom/client';
+import { Provider } from 'react-redux';
 import App from './components/App';
-
+import store from './store/store';
 import styles from './scss/application.scss';
 
-render(
-    <App />,
-    document.getElementById('root')
+const root = createRoot(document.getElementById('root'));
+root.render(
+    // eslint-disable-next-line react/jsx-filename-extension
+    <Provider store={store}>
+        <App />
+    </Provider>,
 );
