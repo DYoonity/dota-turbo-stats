@@ -10,17 +10,19 @@ function HeroGrid({ heroData }) {
     <div className='heroGrid'>
       <Box sx={{ height: 1000, width: '100%' }}>
         <h2>Choose Your Hero</h2>
-        <ImageList cols='6' sx={{ width: 1000, height: '100%' }}>
+        <ImageList cols='6' sx={{ width: 900, height: '100%' }}>
           {heroData.map(hero => (
-            <ImageListItem sx={{ width: 200, height: '100%' }} key={hero.img}>
+            <ImageListItem sx={{ width: 128, height: '100%' }} key={hero.img}>
               <Button
+                heroId={hero.heroId}
                 onClick={() => {
-                  console.log('clicked');
+                  console.log(`clicked ${hero.heroId}`);
                   //   dispatch(getMatches(15))
                 }}>
                 <img
-                  src={`${hero.img}?w=100&fit=crop&auto=format`}
-                  srcSet={`${hero.img}?w=100&fit=crop&auto=format&dpr=2 2x`}
+                  width={128}
+                  src={`${hero.img}?w=128&fit=crop&auto=format`}
+                  srcSet={`${hero.img}?w=128&fit=crop&auto=format&dpr=2 2x`}
                   alt={hero.title}
                   loading='lazy'
                 />
@@ -29,8 +31,6 @@ function HeroGrid({ heroData }) {
             </ImageListItem>
           ))}
         </ImageList>
-
-        {/* <button onClick={() => dispatch(getMatches(15))}> Get matches</button> */}
       </Box>
     </div>
   );
