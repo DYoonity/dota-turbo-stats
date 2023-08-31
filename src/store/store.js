@@ -1,8 +1,13 @@
 import { configureStore } from '@reduxjs/toolkit';
-import matchesReducer from '../features/matches/matchesSlice';
+import { openDotaApiSlice } from '../features/matches/openDotaApiSlice';
+import { heroSlice } from '../features/matches/heroSlice';
 
 export default configureStore({
     reducer: {
-        matches: matchesReducer,
+        hero: heroSlice,
+        [openDotaApiSlice.reducerPath]: openDotaApiSlice.reducer,
     },
+    middleware: getDefaultMiddleware =>
+        getDefaultMiddleware().concat(openDotaApiSlice.middleware),
+    devTools: true
 });

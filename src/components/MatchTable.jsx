@@ -1,4 +1,5 @@
 import React from 'react';
+import { Typography } from '@mui/material';
 import Box from '@mui/material/Box';
 import { DataGrid } from '@mui/x-data-grid';
 import {
@@ -15,34 +16,44 @@ function MatchTable() {
     isLoading,
   } = useGetHeroMatchesQuery(15);
 
-  let heroMatchesContent;
+  let dataRows;
 
   if (isLoading) {
-    return <p>Loading...</p>;
+    return <p>Loading Matches...</p>;
   }
   if (isSuccess) {
-    heroMatchesContent;
+    dataRows = heroMatchesData.map((match, index) => ({
+      id: index + 1,
+      matchId: match.match_id,
+      league_name: match.league_name,
+      kills: match.kills,
+      deaths: match.deaths,
+      assists: match.assists,
+    }));
   } else if (isError) {
-    heroMatchesContent = <p>{error}</p>;
+    dataRows = <p>{error}</p>;
   }
 
   const columns = [
-    { field: 'matchId', headerName: 'Match ID', width: 150 },
-    { field: 'hero', headerName: 'Hero', width: 150 },
+    {
+      field: 'matchId',
+      headerName: 'Match ID',
+      width: 150,
+      // renderCell: params => <a href='${dataRows.row.id}'>${params.row.id}</a>,
+    },
+    { field: 'league_name', headerName: 'League', width: 300 },
     { field: 'kills', headerName: 'Kills', width: 150 },
     { field: 'deaths', headerName: 'Deaths', width: 150 },
+    { field: 'assists', headerName: 'Assists', width: 150 },
     { field: 'itemTimings', headerName: 'Item Timings', width: 150 },
   ];
-
-  const dataRows = heroMatchesData.map((row, index) => ({
-    id: index + 1,
-    matchId: row.match_id,
-  }));
 
   return (
     <div className='matchTable'>
       <Box sx={{ height: 520, width: '100%' }}>
-        <h2>DOTA Matches - Hero - Item Timings</h2>
+        <Typography variant='h5' component='h5'>
+          DOTA Hero Matches
+        </Typography>
         {/* <button onClick={() => dispatch(getMatches(15))}> Get matches</button> */}
         <DataGrid rows={dataRows} columns={columns} />
       </Box>
