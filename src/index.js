@@ -4,14 +4,14 @@ import { Provider } from 'react-redux';
 import { ApiProvider } from '@reduxjs/toolkit/query/react';
 import App from './components/App';
 import store from './store/store';
-import { openDotaApi } from './features/matches/openDotaApiSlice'
-// import styles from './scss/application.scss';
+import { openDotaApiSlice } from './features/matches/openDotaApiSlice'
+import styles from './scss/application.scss';
 
 const root = createRoot(document.getElementById('root'));
 root.render(
     // eslint-disable-next-line react/jsx-filename-extension
     <Provider store={store}>
-        <ApiProvider api={openDotaApi}>
+        <ApiProvider api={openDotaApiSlice}>
             <App />
         </ApiProvider>
     </Provider>

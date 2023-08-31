@@ -1,4 +1,6 @@
 import React, { useState } from 'react';
+import { useSelector, useDispatch } from 'react-redux';
+
 import { Typography } from '@mui/material';
 import Box from '@mui/material/Box';
 import Accordion from '@mui/material/Accordion';
@@ -9,13 +11,28 @@ import ImageList from '@mui/material/ImageList';
 import ImageListItem from '@mui/material/ImageListItem';
 import ImageListItemBar from '@mui/material/ImageListItemBar';
 import Button from '@mui/material/Button';
+import MatchTable from './MatchTable';
+import { selectHero } from '../features/matches/heroSlice';
 
 function HeroGrid({ heroData }) {
   const [expanded, setExpanded] = useState(true);
+  const [selectedHeroId, setSelectedHeroId] = useState(1);
+  // const myHeroId = useSelector(state => state);
+
+  // const dispatch = useDispatch();
 
   const handleChange = panel => (event, isExpanded) => {
     setExpanded(isExpanded ? panel : false);
   };
+  const handleHeroClick = event => {
+    setSelectedHeroId(event);
+  };
+  // const handleHeroClick = event => {
+  //   console.log(event);
+  //   dispatch(selectHero(event));
+  // };
+
+  // console.log(myHeroId);
 
   return (
     <div className='heroGrid'>
@@ -30,7 +47,7 @@ function HeroGrid({ heroData }) {
           aria-controls='panel1bh-content'
           id='panel1bh-header'>
           <Typography sx={{ width: '33%', flexShrink: 0 }}>
-            Selected: Anti-Mage
+            Select Your Hero:
           </Typography>
         </AccordionSummary>
         <AccordionDetails>
@@ -45,9 +62,11 @@ function HeroGrid({ heroData }) {
                   sx={{ width: 128, height: '100%' }}
                   key={hero.img}>
                   <Button
-                    heroId={hero.heroId}
+                    // heroId={hero.heroId}
                     onClick={() => {
                       console.log(`clicked ${hero.heroId}`);
+                      handleHeroClick(hero.heroId);
+                      // console.log(myHeroId);
                     }}>
                     <img
                       width={128}
@@ -64,6 +83,7 @@ function HeroGrid({ heroData }) {
           </Box>
         </AccordionDetails>
       </Accordion>
+      <MatchTable selectedHeroId={selectedHeroId} />
     </div>
   );
 }

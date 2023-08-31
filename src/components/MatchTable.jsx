@@ -2,19 +2,17 @@ import React from 'react';
 import { Typography } from '@mui/material';
 import Box from '@mui/material/Box';
 import { DataGrid } from '@mui/x-data-grid';
-import {
-  useGetHeroMatchesQuery,
-  useGetMatchQuery,
-} from '../features/matches/openDotaApiSlice';
+import { useGetHeroMatchesQuery } from '../features/matches/openDotaApiSlice';
 
-function MatchTable() {
+function MatchTable({ selectedHeroId }) {
+  const mySelectedHeroId = Number(selectedHeroId);
   const {
     data: heroMatchesData,
     error,
     isSuccess,
     isError,
     isLoading,
-  } = useGetHeroMatchesQuery(15);
+  } = useGetHeroMatchesQuery(mySelectedHeroId);
 
   let dataRows;
 

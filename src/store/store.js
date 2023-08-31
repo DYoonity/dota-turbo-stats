@@ -4,8 +4,8 @@ import { heroSlice } from '../features/matches/heroSlice';
 
 export default configureStore({
     reducer: {
-        hero: heroSlice,
         [openDotaApiSlice.reducerPath]: openDotaApiSlice.reducer,
+        heroesSl: heroSlice,
     },
     middleware: getDefaultMiddleware =>
         getDefaultMiddleware().concat(openDotaApiSlice.middleware),
