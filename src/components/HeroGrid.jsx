@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 
-import { Typography } from '@mui/material';
+import { Typography, SvgIcon } from '@mui/material';
 import Box from '@mui/material/Box';
 import Accordion from '@mui/material/Accordion';
 import AccordionDetails from '@mui/material/AccordionDetails';
@@ -36,17 +36,57 @@ function HeroGrid({ heroData }) {
 
   return (
     <div className='heroGrid'>
-      <Typography variant='h4' component='h4' align='center'>
+      <Typography
+        sx={{
+          fontFamily: 'Plus Jakarta Sans, sans-serif',
+          boxShadow: 2,
+          border: 2,
+          color: 'white',
+          borderColor: 'primary.light',
+          backgroundColor: 'text.primary',
+        }}
+        variant='h4'
+        component='h4'
+        align='center'>
         DOTA Hero Matches
       </Typography>{' '}
       <Accordion
+        sx={{
+          fontFamily: 'Plus Jakarta Sans, sans-serif',
+          boxShadow: 2,
+          border: 2,
+          color: 'white',
+          borderColor: 'white',
+          backgroundColor: 'text.primary',
+        }}
         expanded={expanded === 'panel1'}
         onChange={handleChange('panel1')}>
         <AccordionSummary
-          expandIcon={<ExpandMoreIcon />}
+          expandIcon={
+            <ExpandMoreIcon
+              sx={{
+                fontFamily: 'Plus Jakarta Sans, sans-serif',
+                boxShadow: 2,
+                border: 2,
+                color: 'white',
+                borderColor: 'white',
+                backgroundColor: 'text.primary',
+              }}
+            />
+          }
           aria-controls='panel1bh-content'
           id='panel1bh-header'>
-          <Typography sx={{ width: '33%', flexShrink: 0 }}>
+          <img
+            width={40}
+            src='https://e0.pxfuel.com/wallpapers/953/784/desktop-wallpaper-dota-2-icon-icon-library-excharny.jpg?w=40&fit=crop&auto=format'
+            srcSet='https://e0.pxfuel.com/wallpapers/953/784/desktop-wallpaper-dota-2-icon-icon-library-excharny.jpg?w=40&fit=crop&auto=format&dpr=2 2x'
+            alt='dota'
+            loading='lazy'
+          />
+          <Typography
+            sx={{ width: '33%', flexShrink: 0 }}
+            variant='h5'
+            component='h5'>
             Select Your Hero:
           </Typography>
         </AccordionSummary>

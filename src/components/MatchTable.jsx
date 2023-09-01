@@ -48,12 +48,27 @@ function MatchTable({ selectedHeroId }) {
 
   return (
     <div className='matchTable'>
-      <Box sx={{ height: 520, width: '100%' }}>
+      <Box
+        sx={{
+          height: 520,
+          width: '100%',
+        }}>
         <Typography variant='h5' component='h5'>
           DOTA Hero Matches
         </Typography>
         {/* <button onClick={() => dispatch(getMatches(15))}> Get matches</button> */}
-        <DataGrid rows={dataRows} columns={columns} />
+        <DataGrid
+          sx={{
+            fontFamily: 'Plus Jakarta Sans, sans-serif',
+            boxShadow: 2,
+            border: 2,
+            color: 'white',
+            borderColor: 'white',
+            fontSize: 18,
+          }}
+          rows={dataRows}
+          columns={columns}
+        />
       </Box>
     </div>
   );
